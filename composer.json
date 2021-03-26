@@ -1,5 +1,5 @@
 {
-  "name": "mautic/emailMarketing",
+  "name": "mautic/plugin-emailmarketing",
   "description": "Email Marketing Plugin",
   "type": "mautic-plugin",
   "version": "1.0",

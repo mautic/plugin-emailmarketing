@@ -105,10 +105,7 @@ class IcontactType extends AbstractType
         $resolver->setDefined(['form_area']);
     }
 
-    /**
-     * @return string
-     */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'emailmarketing_icontact';
     }

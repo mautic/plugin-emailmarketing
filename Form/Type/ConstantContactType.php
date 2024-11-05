@@ -13,7 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -24,7 +24,7 @@ class ConstantContactType extends AbstractType
     public function __construct(
         private IntegrationHelper $integrationHelper,
         private PluginModel $pluginModel,
-        protected SessionInterface $session,
+        protected RequestStack $requestStack,
         protected CoreParametersHelper $coreParametersHelper
     ) {
     }
@@ -34,7 +34,7 @@ class ConstantContactType extends AbstractType
         /** @var \MauticPlugin\MauticEmailMarketingBundle\Integration\ConstantContactIntegration $object */
         $object          = $this->integrationHelper->getIntegrationObject('ConstantContact');
         $integrationName = $object->getName();
-        $session         = $this->session;
+        $session         = $this->requestStack->getSession();
         $limit           = $session->get(
             'mautic.plugin.'.$integrationName.'.lead.limit',
             $this->coreParametersHelper->get('default_pagelimit')

@@ -12,7 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -23,7 +23,7 @@ class IcontactType extends AbstractType
     public function __construct(
         private IntegrationHelper $integrationHelper,
         private PluginModel $pluginModel,
-        protected SessionInterface $session,
+        protected RequestStack $requestStack,
         protected CoreParametersHelper $coreParametersHelper
     ) {
     }
@@ -33,7 +33,7 @@ class IcontactType extends AbstractType
         /** @var \MauticPlugin\MauticEmailMarketingBundle\Integration\IcontactIntegration $object */
         $object          = $this->integrationHelper->getIntegrationObject('Icontact');
         $integrationName = $object->getName();
-        $session         = $this->session;
+        $session         = $this->requestStack->getSession();
         $limit           = $session->get(
             'mautic.plugin.'.$integrationName.'.lead.limit',
             $this->coreParametersHelper->get('default_pagelimit')

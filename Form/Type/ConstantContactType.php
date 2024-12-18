@@ -29,6 +29,10 @@ class ConstantContactType extends AbstractType
     ) {
     }
 
+    /**
+     * @param FormBuilderInterface<array<mixed>|null> $builder
+     * @param array<string, mixed>                    $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         /** @var \MauticPlugin\MauticEmailMarketingBundle\Integration\ConstantContactIntegration $object */

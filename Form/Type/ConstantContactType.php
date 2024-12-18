@@ -25,7 +25,7 @@ class ConstantContactType extends AbstractType
         private IntegrationHelper $integrationHelper,
         private PluginModel $pluginModel,
         protected RequestStack $requestStack,
-        protected CoreParametersHelper $coreParametersHelper
+        protected CoreParametersHelper $coreParametersHelper,
     ) {
     }
 
